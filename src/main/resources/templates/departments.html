@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Departments</title>
+</head>
+<body>
+<h1>Departments</h1>
+
+<div th:if="${departments != null && departments.length > 0}">
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Employees</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="department : ${departments}">
+            <td th:text="${department.id}">ID</td>
+            <td th:text="${department.name}">Name</td>
+            <td th:text="${department.location}">Location</td>
+            <td>
+                <ul>
+                    <li th:each="employee : ${department.employees}" th:text="${employee.name + ' ' + employee.surname}">Employee</li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:if="${departments == null || departments.length == 0}">
+    <p>No departments found.</p>
+</div>
+
+</body>
+</html>
